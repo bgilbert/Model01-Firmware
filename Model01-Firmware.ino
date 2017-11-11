@@ -25,6 +25,9 @@
 // Support for "Numlock" mode, which is mostly just the Numlock specific LED mode
 #include "Kaleidoscope-Numlock.h"
 
+// Support shifted characters
+#include <Kaleidoscope-TopsyTurvy.h>
+
 // Support for an "LED off mode"
 #include "LED-Off.h"
 
@@ -126,18 +129,18 @@ const Key keymaps[][ROWS][COLS] PROGMEM = {
    ShiftToLayer(FUNCTION)),
 
   [FUNCTION] =  KEYMAP_STACKED
-  (___,      Key_F1,           Key_F2,      Key_F3,     Key_F4,        Key_F5,           XXX,
-   Key_Tab,  ___,              ___,         ___,        ___,           ___,              ___,
-   Key_Home, ___,              ___,         ___,        ___,           ___,
-   Key_End,  Key_PrintScreen,  Key_Insert,  ___,        ___,           ___,              ___,
+  (___,      Key_F1,        Key_F2,           Key_F3,    Key_F4,           Key_F5,          XXX,
+   Key_Tab,  TOPSY(1),      TOPSY(2),         TOPSY(3),  TOPSY(4),         TOPSY(5),        ___,
+   Key_Home, TOPSY(6),      TOPSY(7),         TOPSY(8),  TOPSY(Semicolon), TOPSY(Backtick),
+   Key_End,  Key_Backslash, TOPSY(Backslash), Key_Quote, TOPSY(Quote),     TOPSY(Slash),    ___,
    ___, Key_Delete, ___, ___,
    ___,
 
-   Consumer_ScanPreviousTrack, Key_F6,                 Key_F7,                   Key_F8,                   Key_F9,          Key_F10,          Key_F11,
-   Consumer_PlaySlashPause,    Consumer_ScanNextTrack, Key_LeftCurlyBracket,     Key_RightCurlyBracket,    Key_LeftBracket, Key_RightBracket, Key_F12,
-                               Key_LeftArrow,          Key_DownArrow,            Key_UpArrow,              Key_RightArrow,  ___,              ___,
-   Key_PcApplication,          Key_Mute,               Consumer_VolumeDecrement, Consumer_VolumeIncrement, ___,             Key_Backslash,    Key_Pipe,
-   ___, ___, Key_Enter, ___,
+   ___, Key_F6, Key_F7,             Key_F8,              Key_F9,          Key_F10,          Key_F11,
+   ___, ___,    Key_Equals,         Key_Minus,           TOPSY(Minus),    TOPSY(Equals),    Key_F12,
+        ___,    TOPSY(9),           TOPSY(0),            Key_LeftBracket, Key_RightBracket, ___,
+   ___, ___,    TOPSY(LeftBracket), TOPSY(RightBracket), TOPSY(Comma),    TOPSY(Period),    ___,
+   ___, ___,    Key_Enter, ___,
    ___),
 
 
@@ -241,6 +244,9 @@ void setup() {
 
     // The stalker effect lights up the keys you've pressed recently
     &StalkerEffect,
+
+    // Support shifted characters
+    &TopsyTurvy,
 
     // The numlock plugin is responsible for lighting up the 'numpad' mode
     // with a custom LED effect
