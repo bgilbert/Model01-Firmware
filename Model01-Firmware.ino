@@ -104,7 +104,7 @@ enum { MACRO_VERSION_INFO,
   * the numbers 0, 1 and 2.
   */
 
-enum { QWERTY, FUNCTION, NUMPAD }; // layers
+enum { QWERTY, FUNCTION, ARROWS, NUMPAD }; // layers
 
 /* This comment temporarily turns off astyle's indent enforcement
  *   so we can make the keymaps actually resemble the physical key layout better
@@ -125,7 +125,7 @@ const Key keymaps[][ROWS][COLS] PROGMEM = {
    Key_Tab,           Key_Y, Key_U, Key_I,     Key_O,         Key_P,         Key_PageUp,
                       Key_H, Key_J, Key_K,     Key_L,         Key_Semicolon, Key_PageDown,
    ___,               Key_N, Key_M, Key_Comma, Key_Period,    Key_Slash,     Key_End,
-   Key_LeftAlt, Key_Enter, Key_Spacebar, ___,
+   Key_LeftAlt, Key_Enter, Key_Spacebar, ShiftToLayer(ARROWS),
    ShiftToLayer(FUNCTION)),
 
   [FUNCTION] =  KEYMAP_STACKED
@@ -143,6 +143,21 @@ const Key keymaps[][ROWS][COLS] PROGMEM = {
    ___, ___,    Key_Enter, ___,
    ___),
 
+
+  [ARROWS] =  KEYMAP_STACKED
+  (___, ___, ___, ___, ___, ___, ___,
+   ___, ___, ___, ___, ___, ___, ___,
+   ___, ___, ___, ___, ___, ___,
+   ___, ___, ___, ___, ___, ___, ___,
+   ___, ___, ___, ___,
+   ___,
+
+   ___, ___, ___,           ___,           ___,            ___, ___,
+   ___, ___, ___,           Key_UpArrow,   ___,            ___, ___,
+        ___, Key_LeftArrow, Key_DownArrow, Key_RightArrow, ___, ___,
+   ___, ___, ___, ___,      ___,           ___,            ___,
+   ___, ___, ___, ___,
+   ___),
 
   [NUMPAD] =  KEYMAP_STACKED
   (___, ___, ___, ___, ___, ___, ___,
